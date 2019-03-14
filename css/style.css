@@ -1,0 +1,123 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Century Gothic', sans-serif;
+}
+
+.background, .background-info, .background-journey {
+    background-image: url('../img/background1.jpg');
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.9;
+}
+
+.background-info {
+    background-image: url('../img/background2.jpg');
+}
+
+.background-journey {
+    background-image: url('../img/background3.png');
+}
+
+.landing-box {
+    position: absolute;
+    width: 35%;
+    height: 75%;
+    background-color: rgba(255, 255, 255, 0.904);
+    margin-top: 7%;
+    left: 59%;
+    border-radius: 8px;
+    box-shadow: -4px 16px 40px rgb(0, 0, 0, 1);
+    text-align: center;
+    overflow: scroll;
+    opacity: 0.9;
+}
+
+.info {
+    left: 3%;
+    height: 85%;
+    margin-top: 4%;
+    width: 50%;
+}
+
+.journey {
+    background-color: rgba(255, 255, 255, 0.63);
+    opacity: 0.95;
+    width: 90%;
+    height: 85%;
+    left: 5%;
+    margin-top: 4%;
+}
+
+.ads-bar {
+    position: relative;
+    height: 15%;
+    width: 100%;
+    z-index: 1;
+    opacity: 1;
+    text-align: center;
+    margin-top: 1.2rem;
+}
+
+.ads-logo {
+    max-height: 100%;
+    width: auto;
+    opacity: 1;
+}
+
+h1, p {
+    padding: 5%;
+}
+
+p {
+    font-size: 20px;
+}
+
+.info p {
+    padding: 0;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    font-size: 18px;
+}
+
+.journey h1 {
+    padding: 2%;
+}
+
+.cto {
+    height: 15%;
+    font-size: 20px;
+    border-style: none;
+    background-color: rgb(193, 243, 101);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin: 0.10rem;
+    cursor: pointer;
+}
+
+.about {
+    background-color: rgb(115, 164, 255);
+}
+
+ul {
+    text-align: left;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+}
+
+.condition-list {
+    text-align: center;
+    columns: 1;
+    -webkit-columns: 1;
+    -moz-columns: 1;
+}
+
+.condition {
+    padding: 1.3rem;
+    margin: 0.2rem;
+    background-color: rgba(255, 127, 127, 0.822)
+}
+
