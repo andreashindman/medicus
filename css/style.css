@@ -19,7 +19,7 @@ body, html {
 
 .bgjourney {
     background-image: none;
-    background-color: rgba(206, 230, 237);
+    background-color: rgb(167, 210, 223);
 }
 
 .landing-box {
@@ -146,15 +146,17 @@ ul {
 .condition {
     padding: 0.75rem;
     margin: 0.2rem;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(130, 177, 44, 0);
     background-image: linear-gradient(to right, rgb(130, 177, 44), rgba(130, 177, 44, 0.644));
     margin-top: 0.5rem;
 }
 
 .question {
-    padding: 2rem;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    font-size: 30px;
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 1rem;
     background-color: #80acffd5;
 }
 
@@ -176,9 +178,9 @@ ul {
 }
 
 .question:hover {
-    padding: 2rem;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 
@@ -203,4 +205,10 @@ h1 span {
 
 .next {
     background-color: rgba(94, 214, 94, 0.781)
+}
+
+
+.journey p {
+    font-size: 30px;
+    padding: 1rem;
 }
