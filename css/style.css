@@ -117,7 +117,7 @@ p {
     margin: 0 0.25rem 0 0.25rem;
 }
 
-.about {
+.about, .question {
     background-color: rgb(115, 164, 255);
 }
 
@@ -135,12 +135,27 @@ ul {
     -moz-columns: 1;
 }
 
+.response-list {
+    text-align: center;
+    columns: 1;
+    -webkit-columns: 1;
+    -moz-columns: 1;
+}
+
 .condition {
     padding: 0.75rem;
     margin: 0.2rem;
     background-color: rgba(255, 255, 255, 0);
     background-image: linear-gradient(to right, rgb(130, 177, 44), rgba(130, 177, 44, 0.644));
     margin-top: 0.5rem;
+}
+
+.question {
+    padding: 3.75rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+    margin: 5rem;
+    background-color: #80acffd5;
 }
 
 .journey ul {
@@ -161,11 +176,29 @@ ul {
     padding-right: 1rem;
     transition: all 0.2s ease 0s;
     background-image: none;
-    background-color: rgba(38, 0, 255, 0.692);
+    background-color: rgba(115, 164, 255, 0.692);
     color: white;
 }
+
+.question:hover {
+    padding: 3.75rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+    margin: 5rem;
+}
+
 
 li {
     margin: 0.24rem;
 }
 
+.report-list {
+    font-size: 20px;
+    margin: 5rem;
+    text-align: center
+    justify
+}
+
+h1 span { 
+    background-color: yellow; 
+}
