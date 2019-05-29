@@ -1,0 +1,11 @@
+g_flags,g_means,y_flags,y_means,r_flags,r_means
+No abdominal pain or discomfort,Good work!,Problems with belching,You may need follow-up by your PCP,Rectal bleeding or blood in your stool,You need to be evaluated by a health care professional immediately.
+Have regular bowel movements,Your symptoms are under control,Constipation or diarrhea,Your medication may need to be adjusted.,"Persistent abdominal discomfort, such as cramps, gas, or pain.",
+Digestive issues managed with medications and/or diet.,,Fatigue/weakness,The medication may be effecting your digestive system,A feeling that your bowel doesn’t empty completely,
+,,"Dark, tarry stools, or noticeable blood in your stool",,Weakness or fatigue,
+,,Loss of appetite,,Unexplained weight loss,
+,,Feeling of nausea,,A change in your bowel habits—like diarrhea or constipation—or a change in the consistency of your stool.,
+,,Unexplained weight loss,,"Do not have a bowel movement, particularly when taking a narcotic for three or more days",
+,,Vomiting,,,
+,,Fever of 102 or higher,,,
+,,Stomach cramps that do not go away,,,

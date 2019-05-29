@@ -1,86 +1,122 @@
 ''' docxflagparser.py
-Parses .docx files made by Agind and Disabilies services of Seattle.
+Parses .docx files made by Aging and Disabilies services of Seattle.
     
-Version 0.1, April 25, 2019.
-Andreas Hindman, Univ. of Washington.
+Version 0.2, May 20, 2019.
+Team Medicus, Univ. of Washington.
 
 Usage:
-python3 docxflagparser.py '/path/to/directory_containing_files/'
-A .csv file will be generated that contains a selection of contents of the .pdf
-with column names. Ensure that the only contents of the directory are the .docx 
-files that you want to parse.
+python3 docxflagparser.py '/path/to/directory_containing_files/' A 
+directory containing a .csv file for each condition will be generated,
+containing the relevant selection of contents of the .pdf with column names.
+Ensure that the only contents of the directory are the .docx files that
+you want to parse.
 '''
 
+import pandas as pd
 import docx
 import csv
 import os
 import sys
 
 if sys.argv==[''] or len(sys.argv)<1:
-#  import EightPuzzle as Problem
     directory = "./"
 else:
     directory = (sys.argv[1])
 
-csvData = [['condition', 'g_flags', 'g_means', 'y_flags', 'y_means', 'r_flags', 'r_means']]
+# TODO: Unclean. Use regular expressions instead.
+# define a general filter to remove anomolies from the final output
+def generalFilter(x): return ('If' not in x and x != "" and "(" not in x and ")" not in x and "___" not in x)
+
 
 # Loop over each file in the directory
-for filename in os.listdir(directory):
+for filename in [file for file in os.listdir(directory) if ".docx" in file]:
     # opens a document at the specified path
     doc = docx.Document(directory + filename)
 
     prev_text = ""
 
-    # Tells the parser which column (color) the next flags belong to
-    g_flags_next = False
-    y_flags_next = False
-    r_flags_next = False
+    flag_color = {'green': False,
+                  'yellow': False,
+                  'red': False}
 
-    # set this to true when 'this means...' is up next to be parsed
+    # true when 'this means...' is to be parsed
     means_next = False
-
-    fileData = [filename.replace('.docx', '')]
     
+    df = pd.DataFrame() # (columns=['g_flags', 'y_flags', 'r_flags', 'g_means', 'y_means', 'r_means'])
+
     for table in doc.tables:
         for row in table.rows:
             for cell in row.cells:
-                # TODO: Clean this code so that three booleans aren't required,
-                # for each color.
+                # TODO: Clean this code
                 
-                # if this string matches the last string, no need to continue eval.
-                if cell.text == prev_text: 
+                # if this string matches the last string, no need to continue
+                # if this cell is empty, don't bother parsing it
+                if cell.text == prev_text or cell.text == "": 
                     continue
-
                 # set green flags as the next cells that need to be filled    
                 if ("Green Flags" in cell.text):
-                    g_flags_next = True; y_flags_next = False; r_flags_next = False
-                    
+                    # g_flags_next = True; y_flags_next = False; r_flags_next = False
+                    flag_color.update({'green' : True, 'yellow' : False, 'red' : False})
+                    continue
                 # set yellow flags as the next cells that need to be filled    
-                if ("Yellow Flags" in cell.text):
-                    g_flags_next = False; y_flags_next = True; r_flags_next = False
-
+                elif ("Yellow Flags" in cell.text):
+                    flag_color.update({'green': False, 'yellow': True, 'red' : False})
+                    continue
                 # set red flags as the next cells that need to be filled    
-                if ("Red Flags" in cell.text):
-                    g_flags_next = False; y_flags_next = False; r_flags_next = True
+                elif ("Red Flags" in cell.text):
+                    flag_color.update({'green' : False, 'yellow' : False, 'red' : True})
+                    continue
+                # else:
+                #     flag_color.update({'green' : False, 'yellow' : False, 'red' : False})
 
+
+                # TODO: Remove trailing "OR" and "," but not those that are in the middle of some text
+                # rule for "if you have..."
+                if 'If you' in cell.text and len(df.columns) < 6:
+                    flags = cell.text.replace('If you have:', '').split('\n')
+                    for i in flags:
+                        flags[flags.index(i)] = i.strip()
+                    # Remove cell text that does not belong in output
+                    if flag_color.get('green') and 'g_flags' not in df.columns:
+                        df = pd.concat([df, pd.DataFrame({'g_flags':list(filter(generalFilter, flags))})], axis=1)
+                        
+                    elif flag_color.get('yellow') and 'y_flags' not in df.columns:
+                        df = pd.concat([df, pd.DataFrame({'y_flags':list(filter(generalFilter, flags))})], axis=1)
+
+                    elif flag_color.get('red') and 'r_flags' not in df.columns:
+                        df = pd.concat([df, pd.DataFrame({'r_flags':list(filter(generalFilter, flags))})], axis=1)
+                
                 # rule for "what this means"
-                if means_next: 
-                    means_next = False
-                    fileData.append(cell.text)
+                if means_next and len(df.columns) < 6: 
+                    means = cell.text.split('\n')
+                    for i in means:
+                        means[means.index(i)] = i.strip()
+                    
+                    if flag_color.get('green') and 'g_means' not in df.columns:
+                        df = pd.concat([df, pd.DataFrame({'g_means':list(filter(generalFilter, means))})], axis=1)
 
+                    elif flag_color.get('yellow') and 'y_means' not in df.columns:
+                        df = pd.concat([df, pd.DataFrame({'y_means':list(filter(generalFilter, means))})], axis=1)
+
+                    elif flag_color.get('red') and 'r_means' not in df.columns:
+                        df = pd.concat([df, pd.DataFrame({'r_means':list(filter(generalFilter, means))})], axis=1)
+                    means_next = False
+               
                 # isolate the symptoms associated with this flag and add to .csv buffer
                 if (prev_text == "What this means …") and (cell.text != ""):
                     means_next = True
-                    fileData.append(cell.text)
 
-                # no need to evaluate empty strings
-                if cell.text != "": 
-                    prev_text = cell.text
+                prev_text = cell.text
+    
+    # if folder to put data in does not exist, create it    
+    if not os.path.exists('./docxflagparserdata/'):
+        os.makedirs('./docxflagparserdata/')
 
-    csvData.append(fileData)
+    df.to_csv('./docxflagparserdata/' + filename.replace('.docx', '.csv'), index=False)
 
-with open('SelfManagementPlanData.csv', 'w') as csvFile:
-    writer = csv.writer(csvFile)
-    writer.writerows(csvData)
-
-csvFile.close()
+    # Not relevant when using pandas dataframes due to df.to_csv()
+    # Only necessary if pandas is not an allowed dependency
+    # with open('./docxflagparserdata/' + filename.replace('.docx', '.csv'), 'w') as csvFile:
+    #     writer = csv.writer(csvFile)
+    #     writer.writerows(columns)
+    # csvFile.close()
