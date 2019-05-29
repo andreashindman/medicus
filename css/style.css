@@ -39,6 +39,12 @@ body, html {
     opacity: 0.9;
 }
 
+@media (max-width: 690px) {
+    .landing-box {
+        width: 82%;
+    }
+}
+
 .select {
     padding: 0;
 }
