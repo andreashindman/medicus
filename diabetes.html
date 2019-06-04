@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Team Medicus">
+    <meta name="description" content="Start your Journey">
+    <meta name="keywords" content="ads, aging, disability, chronic">
+
+    <title>Start your Journey with us - ADS</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="background bgjourney">
+
+        <div class="landing-box journey">
+            <h1>Diabetes Self Management Plan:</h1>
+            <h2>Please select all that apply to you:</h2>
+
+
+            <div class="flex-container">
+                <div class="flex-item">
+                    <p><input type="checkbox" name="g">Fasting blood sugar is between 90 and 130</p>
+                    <p><input type="checkbox" name="g">Blood pressure less than 130/80</p>
+                    <p><input type="checkbox" name="g">No decrease in your ability to maintain your activity level</p>
+                </div>
+                <div class="flex-item">
+                    <p><input type="checkbox" name="y">HgbA1c between 7 percent and 8 percent</p>
+                    <p><input type="checkbox" name="y">Average blood sugar 150 - 210</p>
+                    <p><input type="checkbox" name="y">Most fasting blood sugars less than 200</p>
+                    <p><input type="checkbox" name="y">Low readings less than 70.</p>
+                    <p><input type="checkbox" name="y">Blood pressure greater than 140/90</p>
+                </div>
+                <div class="flex-item">
+                    <p><input type="checkbox" name="r">HgbA1c greater than 9 percent</p>
+                    <p><input type="checkbox" name="r">Average blood sugars greater than 210</p>
+                    <p><input type="checkbox" name="r">Most fasting blood sugars well over 200</p>
+                </div>
+
+
+
+            </div>
+
+            <div><a href="diabetes_results.html"><button class="cto about" onclick="calcFlag()">Submit</button></a></div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function calcFlag() {
+            let r_count = 0;
+            let y_count = 0;
+            let g_count = 0;
+            let flag = "green";
+
+            let reds = document.querySelectorAll('input[name="r"]:checked');
+            let yellows = document.querySelectorAll('input[name="y"]:checked');
+            let greens = document.querySelectorAll('input[name="g"]:checked');
+
+            Array.prototype.forEach.call(reds, function (el) {
+                r_count = r_count + 1;
+            });
+
+            Array.prototype.forEach.call(yellows, function (el) {
+                y_count = y_count + 1;
+            });
+
+            Array.prototype.forEach.call(greens, function (el) {
+                g_count = g_count + 1;
+            });
+
+            if (r_count != 0) {
+                flag = "red";
+            } else if (y_count != 0) {
+                flag = "yellow";
+            } else {
+                flag = "green";
+            }
+
+            localStorage.setItem('result', flag);
+
+        }  </script>
+</body>
+
+</html>

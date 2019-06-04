@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Team Medicus">
+    <meta name="description" content="Start your Journey">
+    <meta name="keywords" content="ads, aging, disability, chronic">
+
+    <title>Start your Journey with us - ADS</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="background bgjourney">
+
+        <div class="landing-box journey">
+            <h1>Digestive Health Self Management Plan:</h1>
+            <h2>Please select all that apply to you:</h2>
+
+
+            <div class="flex-container">
+                <div class="flex-item">
+                    <p><input type="checkbox" name="g">No abdominal pain or discomfort</p>
+                    <p><input type="checkbox" name="g">Have regular bowel movements</p>
+                    <p><input type="checkbox" name="g">Digestive issues managed with medications and/or diet.</p>
+                </div>
+                <div class="flex-item">
+                    <p><input type="checkbox" name="y">Problems with belching</p>
+                    <p><input type="checkbox" name="y">Constipation or diarrhea</p>
+                    <p><input type="checkbox" name="y">Fatigue/weakness</p>
+                    <p><input type="checkbox" name="y">Dark, tarry stools, or noticeable blood in your stool</p>
+                    <p><input type="checkbox" name="y">Loss of appetite</p>
+                    <p><input type="checkbox" name="y">Feeling of nausea </p>
+                    <p><input type="checkbox" name="y">Unexplained weight loss </p>
+                    <p><input type="checkbox" name="y">Vomitting</p>
+                    <p><input type="checkbox" name="y">Fever of 102 or higher</p>
+                    <p><input type="checkbox" name="y">Stomach cramps that do not go away</p>
+                </div>
+                <div class="flex-item">
+                    <p><input type="checkbox" name="r">Rectal bleeding or blood in your stool</p>
+                    <p><input type="checkbox" name="r">Persistent abdominal discomfort, such
+                        as cramps, gas, or pain.</p>
+                    <p><input type="checkbox" name="r">A feeling that your bowel doesn’t empty
+                        completely </p>
+                    <p><input type="checkbox" name="r">Weakness or fatigue</p>
+                    <p><input type="checkbox" name="r">Unexplained weight loss</p>
+                    <p><input type="checkbox" name="r">A change in your bowel habits—like
+                        diarrhea or constipation—or a change
+                        in the consistency of your stool.</p>
+                    <p><input type="checkbox" name="r">Do not have a bowel movement,
+                        particularly when taking a narcotic for
+                        three or more days</p>
+                </div>
+
+
+
+            </div>
+
+            <div><a href="digestive_results.html"><button class="cto about" onclick="calcFlag()">Submit</button></a>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function calcFlag() {
+            let r_count = 0;
+            let y_count = 0;
+            let g_count = 0;
+            let flag = "green";
+
+            let reds = document.querySelectorAll('input[name="r"]:checked');
+            let yellows = document.querySelectorAll('input[name="y"]:checked');
+            let greens = document.querySelectorAll('input[name="g"]:checked');
+
+            Array.prototype.forEach.call(reds, function (el) {
+                r_count = r_count + 1;
+            });
+
+            Array.prototype.forEach.call(yellows, function (el) {
+                y_count = y_count + 1;
+            });
+
+            Array.prototype.forEach.call(greens, function (el) {
+                g_count = g_count + 1;
+            });
+
+            if (r_count != 0) {
+                flag = "red";
+            } else if (y_count != 0) {
+                flag = "yellow";
+            } else {
+                flag = "green";
+            }
+
+            localStorage.setItem('result', flag);
+
+        }  </script>
+</body>
+
+</html>
