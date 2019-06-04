@@ -263,23 +263,17 @@ h1 span {
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
-    position: absolute;
+
     background-color: #f1f1f1;
     min-width: 170px;
-    max-height: 270px;
+    max-height: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-color: #3e8e41;
     border-width: 4px;
     border-style: solid;
     border-radius: 6px;
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
-    column-rule: 1px solid #3e8e41;
-    column-gap: 0;
-    z-index: 1;
     overflow-y: scroll;
-    margin-top: 0.2rem;
+    margin-top: 0.05rem;
   }
   
   /* Links inside the dropdown */
