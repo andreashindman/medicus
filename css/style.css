@@ -72,9 +72,9 @@ body, html {
     background-color: rgba(255, 255, 255, 0.63);
     opacity: 0.95;
     width: 90%;
-    height: 85%;
+    height: 95%;
     left: 5%;
-    margin-top: 4%;
+    margin-top: 1%;
     padding-bottom: 0.5rem;
 }
 
@@ -326,4 +326,10 @@ h1 span {
   .flex-item p {
       font-size: 16px;
       padding: 0%;
+  }
+
+  @media (max-width: 992px) {
+    .flex-container {
+        flex-direction: column;
+    }
   }

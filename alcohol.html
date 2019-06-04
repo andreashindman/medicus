@@ -24,30 +24,70 @@
 
             <div class="flex-container">
                 <div class="flex-item">
-                    <p><input type="checkbox" class="g">Do not drink or if you do, drink in moderation</p>
+                    <p><input type="checkbox" name="g">Do not drink or if you do, drink in moderation</p>
                 </div>
                 <div class="flex-item">
-                    <p><input type="checkbox" class="y">Drink heavily and are frequently intoxicated</p>
-                    <p><input type="checkbox" class="y">Risky behaviors e.g. driving after drinking</p>
-                    <p><input type="checkbox" class="y">Loss of appetite</p>
-                    <p><input type="checkbox" class="y">Regularly lose control over your alcohol intake, drink to cope
+                    <p><input type="checkbox" name="y">Drink heavily and are frequently intoxicated</p>
+                    <p><input type="checkbox" name="y">Risky behaviors e.g. driving after drinking</p>
+                    <p><input type="checkbox" name="y">Loss of appetite</p>
+                    <p><input type="checkbox" name="y">Regularly lose control over your alcohol intake, drink to cope
                         with
                         difficulties, or to avoid feeling bad.</p>
-                    <p><input type="checkbox" class="y">A need to drink to relieve or avoid withdrawal symptoms</p>
+                    <p><input type="checkbox" name="y">A need to drink to relieve or avoid withdrawal symptoms</p>
                 </div>
                 <div class="flex-item">
-                    <p><input type="checkbox" class="r">Shake or have tremors in your hands and legs, or have a seizure
+                    <p><input type="checkbox" name="r">Shake or have tremors in your hands and legs, or have a seizure
                     </p>
-                    <p><input type="checkbox" class="r">Have hallucinations</p>
-                    <p><input type="checkbox" class="r">Have nausea, vomiting, abdominal pain, and dehydration.</p>
-                    <p><input type="checkbox" class="r">Vomit blood</p>
-                    <p><input type="checkbox" class="r">Have loss of consciousness or fainting</p>
-                    <p><input type="checkbox" class="r">Feel suicidal</p>
+                    <p><input type="checkbox" name="r">Have hallucinations</p>
+                    <p><input type="checkbox" name="r">Have nausea, vomiting, abdominal pain, and dehydration.</p>
+                    <p><input type="checkbox" name="r">Vomit blood</p>
+                    <p><input type="checkbox" name="r">Have loss of consciousness or fainting</p>
+                    <p><input id="me" type="checkbox" name="r">Feel suicidal</p>
                 </div>
+
+
+
             </div>
+
+            <div><a href="alcohol_results.html"><button class="cto about" onclick="calcFlag()">Submit</button></a></div>
 
         </div>
     </div>
+
+    <script type="text/javascript">
+        function calcFlag() {
+            let r_count = 0;
+            let y_count = 0;
+            let g_count = 0;
+            let flag = "green";
+
+            let reds = document.querySelectorAll('input[name="r"]:checked');
+            let yellows = document.querySelectorAll('input[name="y"]:checked');
+            let greens = document.querySelectorAll('input[name="g"]:checked');
+
+            Array.prototype.forEach.call(reds, function (el) {
+                r_count = r_count + 1;
+            });
+
+            Array.prototype.forEach.call(yellows, function (el) {
+                y_count = y_count + 1;
+            });
+
+            Array.prototype.forEach.call(greens, function (el) {
+                g_count = g_count + 1;
+            });
+
+            if (r_count != 0) {
+                flag = "red";
+            } else if (y_count != 0) {
+                flag = "yellow";
+            } else {
+                flag = "green";
+            }
+
+            localStorage.setItem('result', flag);
+
+        }  </script>
 </body>
 
 </html>
