@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Team Medicus">
+    <meta name="description" content="Start your Journey">
+    <meta name="keywords" content="ads, aging, disability, chronic">
+
+    <title>Start your Journey with us - ADS</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="background bgjourney">
+
+        <div class="landing-box journey">
+            <h1>Brain Health Self Management Plan:</h1>
+            <h2>Please select all that apply to you:</h2>
+
+
+            <div class="flex-container">
+                <div class="flex-item">
+                    <p><input type="checkbox" name="g">Follow a healthy diet</p>
+                    <p><input type="checkbox" name="g">Get at least 30 minutes of daily exercise</p>
+                    <p><input type="checkbox" name="g">Have mental stimulation, like reading, crossword, puzzles, or do
+                        memory exercises</p>
+                    <p><input type="checkbox" name="g">Stay socially active with friends and family</p>
+                </div>
+                <div class="flex-item">
+                    <p><input type="checkbox" name="y">Are not following a healthy diet or getting regular exercise</p>
+                    <p><input type="checkbox" name="y">Do not get regular sleep, or your sleep is often interrupted</p>
+                    <p><input type="checkbox" name="y">Drink alcohol in excess</p>
+                    <p><input type="checkbox" name="y">Smoke cigarettes or chew tobacco</p>
+                    <p><input type="checkbox" name="y">Have diabetes and your blood sugar is not well controlled</p>
+                    <p><input type="checkbox" name="y">Forget important events, difficulty concentrating, forgetting
+                        familiar locations, misplace things, have difficult time with making decisions, or have changes
+                        in mood or personality.</p>
+                    <p><input type="checkbox" name="r">Arm weakness</p>
+                </div>
+                <div class="flex-item">
+                    <p><input type="checkbox" name="r">Trouble thinking</p>
+                    <p><input type="checkbox" name="r">Facial drooping or numbness</p>
+                    <p><input type="checkbox" name="r">Speech difficulty, slurring</p>
+                    <p><input type="checkbox" name="r">Sudden trouble walking, dizziness, loss of balance, or
+                        coordination</p>
+                    <p><input type="checkbox" name="r">Sudden onset of severe headache with no known cause</p>
+                    <p><input type="checkbox" name="r">Unresponsiveness or Seizures</p>
+                </div>
+
+
+
+            </div>
+
+            <div><a href="brain_results.html"><button class="cto about" onclick="calcFlag()">Submit</button></a></div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function calcFlag() {
+            let r_count = 0;
+            let y_count = 0;
+            let g_count = 0;
+            let flag = "green";
+
+            let reds = document.querySelectorAll('input[name="r"]:checked');
+            let yellows = document.querySelectorAll('input[name="y"]:checked');
+            let greens = document.querySelectorAll('input[name="g"]:checked');
+
+            Array.prototype.forEach.call(reds, function (el) {
+                r_count = r_count + 1;
+            });
+
+            Array.prototype.forEach.call(yellows, function (el) {
+                y_count = y_count + 1;
+            });
+
+            Array.prototype.forEach.call(greens, function (el) {
+                g_count = g_count + 1;
+            });
+
+            if (r_count != 0) {
+                flag = "red";
+            } else if (y_count != 0) {
+                flag = "yellow";
+            } else {
+                flag = "green";
+            }
+
+            localStorage.setItem('result', flag);
+
+        }  </script>
+</body>
+
+</html>

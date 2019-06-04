@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Team Medicus">
+    <meta name="description" content="Start your Journey">
+    <meta name="keywords" content="ads, aging, disability, chronic">
+
+    <title>Start your Journey with us - ADS</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="background bgjourney">
+
+        <div class="landing-box journey">
+            <h1>COPD Self Management Plan:</h1>
+            <h2>Please select all that apply to you:</h2>
+
+
+            <div class="flex-container">
+                <div class="flex-item">
+                    <p><input type="checkbox" name="g">No cough or shortness of breath</p>
+                    <p><input type="checkbox" name="g">No wheezing</p>
+                    <p><input type="checkbox" name="g">No chest tightness</p>
+                    <p><input type="checkbox" name="g">No decrease in your ability to maintain your activity level</p>
+                </div>
+                <div class="flex-item">
+                    <p><input type="checkbox" name="y">Increased cough and/or sputum and symptoms</p>
+                    <p><input type="checkbox" name="y">Increase in shortness of breath with usual activity level</p>
+                    <p><input type="checkbox" name="y">Increase in the amount of quick relief medications used</p>
+                    <p><input type="checkbox" name="y">Change in usual energy level: Increase in either tiredness or restlessness</p>
+                    <p><input type="checkbox" name="y">Increased number of pillows needed to sleep or need to sleep in arm chair</p>
+                    <p><input type="checkbox" name="y">Swelling of ankles more than usual</p>
+                    <p><input type="checkbox" name="y">Experience chest tightness</p>
+                    <p><input type="checkbox" name="y">Anything else that bothers you</p>
+                </div>
+                <div class="flex-item">
+                    <p><input type="checkbox" name="r">Unrelieved shortness of breath or unrelieved chest pain/chest tightness</p>
+                    <p><input type="checkbox" name="r">Shortness of breath at rest</p>
+                    <p><input type="checkbox" name="r"></p>
+                    <p><input type="checkbox" name="r">Fever or shaking chills</p>
+                    <p><input type="checkbox" name="r">Wheezing or chest tightness at rest</p>
+                    <p><input type="checkbox" name="r">Need to sit in chair to sleep</p>
+                    <p><input type="checkbox" name="r">Increased or irregular heart beat</p>
+                    <p><input type="checkbox" name="r">Changes in color of your skin, nail beds, or lips to gray or blue</p>
+                    <p><input type="checkbox" name="r">Coughing up blood</p>
+                </div>
+
+
+
+            </div>
+
+            <div><a href="copd_results.html"><button class="cto about" onclick="calcFlag()">Submit</button></a></div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function calcFlag() {
+            let r_count = 0;
+            let y_count = 0;
+            let g_count = 0;
+            let flag = "green";
+
+            let reds = document.querySelectorAll('input[name="r"]:checked');
+            let yellows = document.querySelectorAll('input[name="y"]:checked');
+            let greens = document.querySelectorAll('input[name="g"]:checked');
+
+            Array.prototype.forEach.call(reds, function (el) {
+                r_count = r_count + 1;
+            });
+
+            Array.prototype.forEach.call(yellows, function (el) {
+                y_count = y_count + 1;
+            });
+
+            Array.prototype.forEach.call(greens, function (el) {
+                g_count = g_count + 1;
+            });
+
+            if (r_count != 0) {
+                flag = "red";
+            } else if (y_count != 0) {
+                flag = "yellow";
+            } else {
+                flag = "green";
+            }
+
+            localStorage.setItem('result', flag);
+
+        }  </script>
+</body>
+
+</html>

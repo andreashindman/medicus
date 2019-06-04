@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Team Medicus">
+    <meta name="description" content="Start your Journey">
+    <meta name="keywords" content="ads, aging, disability, chronic">
+
+    <title>Start your Journey with us - ADS</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="background bgjourney">
+
+        <div class="landing-box journey">
+            <h1>Congestive Heart Failure Self Management Plan:</h1>
+            <h2>Please select all that apply to you:</h2>
+
+
+            <div class="flex-container">
+                <div class="flex-item">
+                    <p><input type="checkbox" name="g">No shortness of breath</p>
+                    <p><input type="checkbox" name="g">No swelling of your feet, ankles, legs or stomach</p>
+                    <p><input type="checkbox" name="g">No chest pain</p>
+                    <p><input type="checkbox" name="g">Ability to do usual activities</p>
+                </div>
+                <div class="flex-item">
+                    <p><input type="checkbox" name="y">A weight gain of 2 - 3  pounds in 2 - 3  days or 4 - 5 pounds in a week</p>
+                    <p><input type="checkbox" name="y">Shortness of breath</p>
+                    <p><input type="checkbox" name="y">Swelling of your feet, ankles, legs or stomach</p>
+                    <p><input type="checkbox" name="y">Fatigue or lack of energy</p>
+                    <p><input type="checkbox" name="y">Dry hacking cough</p>
+                    <p><input type="checkbox" name="y">Dizziness</p>
+                    <p><input type="checkbox" name="y">An uneasy feeling‚ you know something is not right</p>
+                    <p><input type="checkbox" name="y">Chest pain or heaviness</p>
+                </div>
+                <div class="flex-item">
+                    <p><input type="checkbox" name="y">Difficulty breathing when lying down or you sleep sitting up with extra pillows</p>
+                    <p><input type="checkbox" name="r">Are struggling to breathe or have unrelieved shortness of breath while sitting still</p>
+                    <p><input type="checkbox" name="r">Have chest pain not relieved or reoccurs after taking 3 nitro tablets</p>
+                    <p><input type="checkbox" name="r">Have confusion or cannot think clearly</p>
+                </div>
+
+
+
+            </div>
+
+            <div><a href="chf_results.html"><button class="cto about" onclick="calcFlag()">Submit</button></a></div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function calcFlag() {
+            let r_count = 0;
+            let y_count = 0;
+            let g_count = 0;
+            let flag = "green";
+
+            let reds = document.querySelectorAll('input[name="r"]:checked');
+            let yellows = document.querySelectorAll('input[name="y"]:checked');
+            let greens = document.querySelectorAll('input[name="g"]:checked');
+
+            Array.prototype.forEach.call(reds, function (el) {
+                r_count = r_count + 1;
+            });
+
+            Array.prototype.forEach.call(yellows, function (el) {
+                y_count = y_count + 1;
+            });
+
+            Array.prototype.forEach.call(greens, function (el) {
+                g_count = g_count + 1;
+            });
+
+            if (r_count != 0) {
+                flag = "red";
+            } else if (y_count != 0) {
+                flag = "yellow";
+            } else {
+                flag = "green";
+            }
+
+            localStorage.setItem('result', flag);
+
+        }  </script>
+</body>
+
+</html>

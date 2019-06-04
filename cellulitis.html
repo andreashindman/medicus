@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Team Medicus">
+    <meta name="description" content="Start your Journey">
+    <meta name="keywords" content="ads, aging, disability, chronic">
+
+    <title>Start your Journey with us - ADS</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="background bgjourney">
+
+        <div class="landing-box journey">
+            <h1>Cellulitis Self Management Plan:</h1>
+            <h2>Please select all that apply to you:</h2>
+
+
+            <div class="flex-container">
+                <div class="flex-item">
+                    <p><input type="checkbox" name="g">Have a habit of washing your hands regularly</p>
+                    <p><input type="checkbox" name="g">Have no open wounds, rashes, or skin breakdown</p>
+                    <p><input type="checkbox" name="g">Moisturize your skin to avoid cracking/peeling.</p>
+                </div>
+                <div class="flex-item">
+                    <p><input type="checkbox" name="y">A history of skin problems, including cellulitis</p>
+                    <p><input type="checkbox" name="y">Red, painful, and warm areas on your skin</p>
+                    <p><input type="checkbox" name="y">Red, cracked, or flaky skin</p>
+                    <p><input type="checkbox" name="y">Fever, chills, fatigue</p>
+                    <p><input type="checkbox" name="y">No improvement in symptoms or they are worse</p>
+                </div>
+                <div class="flex-item">
+                    <p><input type="checkbox" name="r">Red, swollen, tender skin that is warm to the touch and a fever of 100.4 or higher.</p>
+                    <p><input type="checkbox" name="r">A fever of 104 or higher.</p>
+                </div>
+
+
+
+            </div>
+
+            <div><a href="cellulitis_results.html"><button class="cto about" onclick="calcFlag()">Submit</button></a></div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function calcFlag() {
+            let r_count = 0;
+            let y_count = 0;
+            let g_count = 0;
+            let flag = "green";
+
+            let reds = document.querySelectorAll('input[name="r"]:checked');
+            let yellows = document.querySelectorAll('input[name="y"]:checked');
+            let greens = document.querySelectorAll('input[name="g"]:checked');
+
+            Array.prototype.forEach.call(reds, function (el) {
+                r_count = r_count + 1;
+            });
+
+            Array.prototype.forEach.call(yellows, function (el) {
+                y_count = y_count + 1;
+            });
+
+            Array.prototype.forEach.call(greens, function (el) {
+                g_count = g_count + 1;
+            });
+
+            if (r_count != 0) {
+                flag = "red";
+            } else if (y_count != 0) {
+                flag = "yellow";
+            } else {
+                flag = "green";
+            }
+
+            localStorage.setItem('result', flag);
+
+        }  </script>
+</body>
+
+</html>

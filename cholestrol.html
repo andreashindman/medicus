@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Team Medicus">
+    <meta name="description" content="Start your Journey">
+    <meta name="keywords" content="ads, aging, disability, chronic">
+
+    <title>Start your Journey with us - ADS</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="background bgjourney">
+
+        <div class="landing-box journey">
+            <h1>Cholestrol Self Management Plan:</h1>
+            <h2>Please select all that apply to you:</h2>
+
+
+            <div class="flex-container">
+                <div class="flex-item">
+                    <p><input type="checkbox" name="g">Take medications for cholesterol as prescribed</p>
+                    <p><input type="checkbox" name="g">Regularly eat a healthy diet</p>
+                    <p><input type="checkbox" name="g">Are physically active</p>
+                </div>
+                <div class="flex-item">
+                    <p><input type="checkbox" name="y">Regularly eat fatty foods</p>
+                    <p><input type="checkbox" name="y">Do not exercise regularly</p>
+                    <p><input type="checkbox" name="y">Have been told you have high cholesterol</p>
+                    <p><input type="checkbox" name="y">Have not had your cholesterol checked within 5 years</p>
+                    <p><input type="checkbox" name="y">Are overweight</p>
+                    <p><input type="checkbox" name="y">Over 20 years of age</p>
+                    <p><input type="checkbox" name="y">Have a family member with high cholesterol</p>
+                    <p><input type="checkbox" name="y">Have soft, yellow spots on your eyelids</p>
+                </div>
+                <div class="flex-item">
+                    <p><input type="checkbox" name="r">Shortness of breath</p>
+                    <p><input type="checkbox" name="r">Irregular heartbeats or a flip-flop feeling in your chest</p>
+                    <p><input type="checkbox" name="r">Chest pain</p>
+                    <p><input type="checkbox" name="r">Pain in jaw, neck, throat, or back</p>
+                    <p><input type="checkbox" name="r">A fast heartbeat</p>
+                    <p><input type="checkbox" name="r">Weakness or dizziness</p>
+                    <p><input type="checkbox" name="r">Nausea</p>
+                    <p><input type="checkbox" name="r">Sweating</p>
+                </div>
+
+
+
+            </div>
+
+            <div><a href="cholestrol_results.html"><button class="cto about" onclick="calcFlag()">Submit</button></a></div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function calcFlag() {
+            let r_count = 0;
+            let y_count = 0;
+            let g_count = 0;
+            let flag = "green";
+
+            let reds = document.querySelectorAll('input[name="r"]:checked');
+            let yellows = document.querySelectorAll('input[name="y"]:checked');
+            let greens = document.querySelectorAll('input[name="g"]:checked');
+
+            Array.prototype.forEach.call(reds, function (el) {
+                r_count = r_count + 1;
+            });
+
+            Array.prototype.forEach.call(yellows, function (el) {
+                y_count = y_count + 1;
+            });
+
+            Array.prototype.forEach.call(greens, function (el) {
+                g_count = g_count + 1;
+            });
+
+            if (r_count != 0) {
+                flag = "red";
+            } else if (y_count != 0) {
+                flag = "yellow";
+            } else {
+                flag = "green";
+            }
+
+            localStorage.setItem('result', flag);
+
+        }  </script>
+</body>
+
+</html>

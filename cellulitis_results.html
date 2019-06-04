@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Team Medicus">
+    <meta name="description" content="Start your Journey">
+    <meta name="keywords" content="ads, aging, disability, chronic">
+
+    <title>Start your Journey with us - ADS</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="background bgjourney">
+
+        <div class="landing-box journey" id="result-box">
+            <div>
+                <img src="img/green.png" alt="Green Flag" , width="300" style="display:none" id="green_img">
+                <img src="img/yellow.png" alt="Yellow Flag" , width="300" style="display:none" id="yellow_img">
+                <img src="img/red.png" alt="Red Flag" , width="300" style="display:none" id="red_img">
+            </div>
+            <div>
+                <div id="green_means" style="display:none">
+                    <h2>You are doing good! Keep up the great work!</h2>
+
+                    <h4>Your symptoms are under control</h4>
+
+                </div>
+
+                <div id="yellow_means" style="display:none">
+                    <h2>You need to work closely with your health care team</h2>
+
+                    <h4>You are at risk for infection</h4>
+                    <h4>You may have an infection/cellulitis.</h4>
+                    <h4>You are at higher risk for cancer</h4>
+                    <h4>You may have memory loss that needs to be evaluated by your health care provider.</h4>
+
+                </div>
+
+                <div id="red_means" style="display:none">
+                    <h2>Emergency! You might need to call 911</h2>
+
+                    <h4>You need to be evaluated by a health care professional immediately.</h4>
+
+                </div>
+
+                <div>
+                    <a href="index.html"><button class="cto about">Return to Home Page</button></a>
+                    <a href="http://www.agingkingcounty.org/wp-content/uploads/sites/185/2016/07/CellulitisandYourHealth.pdf"
+                        target="_blank"><button class="cto about">More Information</button></a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript">
+        let result = localStorage.getItem('result');
+        let flag_image = document.getElementById("green_img");
+        let info_div = document.getElementById("green_means");
+        if (result == "green") {
+            flag_image = document.getElementById("green_img");
+            info_div = document.getElementById("green_means");
+        } else if (result == "yellow") {
+            flag_image = document.getElementById("yellow_img");
+            info_div = document.getElementById("yellow_means");
+        } else {
+            flag_image = document.getElementById("red_img");
+            info_div = document.getElementById("red_means");
+        }
+
+        flag_image.style.display = "inline";
+        info_div.style.display = "inline";
+    </script>
+
+
+</body>
+
+</html>
