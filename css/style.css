@@ -311,3 +311,19 @@ h1 span {
   .question:hover {
     background-color: #3e8e41;
   }
+
+
+  .flex-container {
+      display: flex;
+      padding: 0 5% 0 5%;
+      text-align: left;
+  }
+
+  .flex-item {
+      padding: 2%;
+  }
+
+  .flex-item p {
+      font-size: 16px;
+      padding: 0%;
+  }
