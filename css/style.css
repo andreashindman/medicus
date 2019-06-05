@@ -331,10 +331,16 @@ h1 span {
   #result-box {
     display: flex;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
+    vertical-align: middle;
+
   }
 
-  @media (max-width: 992px) {
+  #green_img, #red_img, #yellow_img {
+      padding-top: 38%;
+  }
+
+  @media (max-aspect-ratio: 4/3) {
     .flex-container {
         flex-direction: column;
     }
